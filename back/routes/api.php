@@ -9,10 +9,7 @@ Route::get('/flights/{airport}/{type}', [FlightController::class, 'getFlights'])
 
 
 // listado aeropuertos
-Route::get('/airports', function() {
-    $response = Http::get('https://external.airport.ai/web/plugins/setup?domain=https://www.aena.es&clientId=7d854dc1-6f17-4fbe-a1fe-aaf4949e1fc0&messagingPlatform=WEB');
+Route::get('/airports', [FlightController::class, 'getAirports']);
 
-    $res = $response->json();
-
-    return $res['airportPerURLPath'] ?? [];
-});
+// imagenes de compañias
+Route::get('/airline', [FlightController::class, 'getLogo']);
