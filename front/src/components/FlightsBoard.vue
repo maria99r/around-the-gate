@@ -9,7 +9,7 @@ import DataTablesCore from "datatables.net-dt";
 import "datatables.net-dt/css/dataTables.dataTables.css";
 DataTable.use(DataTablesCore);
 
-import { useFlightsStore } from "../stores/flights";
+import { useFlightsStore } from "../stores/flightsStore";
 
 const store = useFlightsStore();
 

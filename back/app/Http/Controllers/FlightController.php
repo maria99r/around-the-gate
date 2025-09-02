@@ -12,7 +12,7 @@ class FlightController extends Controller
             'pagename' => 'AENA_ConsultarVuelos',
             'airport' => $airport,
             'flightType' => $type,
-            'limit' => 20,
+            'limit' => 100,
             'dosDias' => 'si',
         ]);
 
