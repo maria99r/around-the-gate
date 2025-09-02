@@ -1,7 +1,7 @@
 <script setup>
-import FlightsBoard from "./components/FlightsBoard.vue";
+import Home from "./components/Home.vue";
 </script>
 
 <template>
-  <FlightsBoard />
+  <Home />
 </template>
