@@ -13,6 +13,8 @@ onMounted(async () => {
 function selectAirport(iata) {
   flightsStore.loadFlights(iata, flightsStore.typeOfInfo);
 }
+
+let now = new Date();
 </script>
 
 <template>
@@ -37,6 +39,16 @@ function selectAirport(iata) {
       {{ flightsStore.actualAirport.name.replace(/-/g, " ") }}
     </h3>
   </nav>
+  <header>
+    <p>Hora local</p>
+    <p>
+      {{
+        ("0" + now.getHours()).slice(-2) +
+        ":" +
+        ("0" + now.getMinutes()).slice(-2)
+      }}
+    </p>
+  </header>
   <!--  <h1>LISTADO DE AEROPUERTOS</h1>
   <ul class="list-none columns-2 gap-16">
     <li
@@ -55,6 +67,21 @@ function selectAirport(iata) {
   </ul>
 -->
   <FlightsBoard></FlightsBoard>
+
+  <footer>
+    <button>Aeropuertos</button>
+    <button>Salidas</button><button>LLegadas</button>
+  </footer>
 </template>
 
-<style scoped></style>
+<style>
+.dt-length {
+  display: none !important;
+}
+
+nav {
+  position: absolute;
+  top: 0;
+  justify-self: center;
+}
+</style>
