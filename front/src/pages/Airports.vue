@@ -22,10 +22,10 @@ function selectAirport(iata) {
   <nav class="flex center flex-col items-center gap-3">
     <img src="/aeropuertos.webp" class="h-15" />
   </nav>
-  <br />
+  <br /><br />
 
   <!--  <h1>LISTADO DE AEROPUERTOS</h1>-->
-  <ul class="list-none columns-2 gap-16 mb-20">
+  <ul class="list-none columns-1 sm:columns-2 gap-16 mb-20">
     <li
       v-for="([iata, name], index) in Object.entries(flightsStore.airports)"
       :key="iata"
@@ -46,28 +46,49 @@ function selectAirport(iata) {
   >
     <RouterLink
       :to="{ name: 'airports' }"
-      class="flex-1 text-center text-gray-400 hover:text-white transition-colors"
+      class="group flex-1 flex flex-col items-center text-gray-400 hover:text-white transition-colors"
       active-class="text-[var(--secondary-color)]!"
     >
-      Aeropuertos
+      <img
+        src="/avion.webp"
+        alt="icono avion"
+        width="45px"
+        class="transition duration-300 bg-gray-900"
+        style="padding: 0.2rem; border-radius: 3px"
+      />
+      <span> Aeropuertos</span>
     </RouterLink>
 
     <button
       @click="flightsStore.changeType('S') && router.push({ name: 'home' })"
       :class="[
-        'flex-1 text-center text-gray-400 hover:text-white transition-colors',
+        'group flex-1 flex flex-col items-center text-gray-400 hover:text-white transition-colors',
       ]"
     >
-      Salidas
+      <img
+        src="/salidas_icono.webp"
+        alt="icono avion"
+        width="45px"
+        :class="['transition duration-300 group-hover:bg-gray-900']"
+        style="padding: 0.2rem; border-radius: 3px"
+      />
+      <span> Salidas</span>
     </button>
 
     <button
       @click="flightsStore.changeType('L') && router.push({ name: 'home' })"
       :class="[
-        'flex-1 text-center text-gray-400 hover:text-white transition-colors',
+        'group flex-1 flex flex-col items-center text-gray-400 hover:text-white transition-colors',
       ]"
     >
-      Llegadas
+      <img
+        src="/llegadas_icono.webp"
+        alt="icono llegadas"
+        width="45px"
+        :class="['transition duration-300 group-hover:bg-gray-900']"
+        style="padding: 0.2rem; border-radius: 3px"
+      />
+      <span> Llegadas</span>
     </button>
   </footer>
 </template>

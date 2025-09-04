@@ -38,6 +38,7 @@ export const useFlightsStore = defineStore("flights", () => {
       type = "S";
     } else type = "L";
 
+    typeOfInfo.value = type;
     await loadFlights(actualAirport.value.code, typeOfInfo.value);
   }
 

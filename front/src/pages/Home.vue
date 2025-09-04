@@ -46,35 +46,64 @@ let now = new Date();
 
   <FlightsBoard></FlightsBoard>
 
+  <br /><br /><br /><br /><br />
+
   <footer
     class="fixed bottom-0 left-0 w-full flex justify-around items-center bg-black py-3 border-t border-gray-800"
   >
     <RouterLink
       :to="{ name: 'airports' }"
-      class="flex-1 text-center text-gray-400 hover:text-white transition-colors"
+      class="group flex-1 flex flex-col items-center text-gray-400 hover:text-white transition-colors"
       active-class="text-[var(--secondary-color)]!"
     >
-      Aeropuertos
+      <img
+        src="/avion.webp"
+        alt="icono avion"
+        width="45px"
+        class="transition duration-300 group-hover:bg-gray-900"
+        style="padding: 0.2rem; border-radius: 3px"
+      />
+      <span> Aeropuertos</span>
     </RouterLink>
 
     <button
-      @click="flightsStore.changeType('S') && router.push({ name: 'home' })"
+      @click="flightsStore.changeType('S')"
       :class="[
-        'flex-1 text-center text-gray-400 hover:text-white transition-colors',
+        'group flex-1 flex flex-col items-center text-gray-400 hover:text-white transition-colors',
         flightsStore.typeOfInfo === 'S' ? 'text-[var(--secondary-color)]!' : '',
       ]"
     >
-      Salidas
+      <img
+        src="/salidas_icono.webp"
+        alt="icono avion"
+        width="45px"
+        :class="[
+          'transition duration-300 group-hover:bg-gray-900',
+          flightsStore.typeOfInfo === 'S' ? 'bg-gray-900' : '',
+        ]"
+        style="padding: 0.2rem; border-radius: 3px"
+      />
+      <span> Salidas</span>
     </button>
 
     <button
-      @click="flightsStore.changeType('L') && router.push({ name: 'home' })"
+      @click="flightsStore.changeType('L')"
       :class="[
-        'flex-1 text-center text-gray-400 hover:text-white transition-colors',
+        'group flex-1 flex flex-col items-center text-gray-400 hover:text-white transition-colors',
         flightsStore.typeOfInfo === 'L' ? 'text-[var(--secondary-color)]!' : '',
       ]"
     >
-      Llegadas
+      <img
+        src="/llegadas_icono.webp"
+        alt="icono llegadas"
+        width="45px"
+        :class="[
+          'transition duration-300 group-hover:bg-gray-900',
+          flightsStore.typeOfInfo === 'L' ? 'bg-gray-900' : '',
+        ]"
+        style="padding: 0.2rem; border-radius: 3px"
+      />
+      <span> Llegadas</span>
     </button>
   </footer>
 </template>
