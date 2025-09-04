@@ -47,7 +47,7 @@ const columns = computed(() => {
   const isSalidas = store.typeOfInfo === "S";
 
   if (isMobile.value) {
-    // Móvil: columnas reducidas
+    // movil
     if (isSalidas) {
       return [
         {
@@ -56,9 +56,19 @@ const columns = computed(() => {
           render: (data) => {
             const horaProg = data.horaProgramada;
             const horaEst = data.horaEstimada;
-            if (!horaEst || horaEst === horaProg)
-              return `<span style="font-weight:bold;">${horaProg}</span>`;
-            return `<div><span style="text-decoration:line-through;color:#888;">${horaProg}</span><br/><span style="font-weight:bold;">${horaEst}</span></div>`;
+
+            if (!horaEst || horaEst === horaProg) {
+              // solo programada
+              return `<span style="font-weight: bold;">${horaProg}</span>`;
+            }
+
+            // programada tachada y estimada debajo
+            return `
+        <div>
+          <span style="text-decoration: line-through; color: #888;">${horaProg}</span><br/>
+          <span style="font-weight: bold;">${horaEst}</span>
+        </div>
+      `;
           },
         },
         {
@@ -91,11 +101,15 @@ const columns = computed(() => {
                 break;
               case "FLY":
                 state = "En vuelo";
-                color = "text-gray-500";
+                color = "text-yellow-500";
                 break;
               case "IBK":
                 state = "Entrega equipaje";
-                color = "text-gray-500";
+                color = "text-emerald-500";
+                break;
+              case "OPE":
+                state = "Aterrizado";
+                color = "text-green-500";
                 break;
               case "FNL":
                 state = "Finalizado";
@@ -113,7 +127,7 @@ const columns = computed(() => {
                 break;
               case "LND":
                 state = "Aterrizando";
-                color = "text-green-500";
+                color = "text-green-700";
                 break;
               case "SCH":
                 state = "Programado";
@@ -171,11 +185,15 @@ const columns = computed(() => {
                 break;
               case "FLY":
                 state = "En vuelo";
-                color = "text-gray-500";
+                color = "text-yellow-500";
                 break;
               case "IBK":
                 state = "Entrega equipaje";
-                color = "text-gray-500";
+                color = "text-emerald-500";
+                break;
+              case "OPE":
+                state = "Aterrizado";
+                color = "text-green-500";
                 break;
               case "FNL":
                 state = "Finalizado";
@@ -193,7 +211,7 @@ const columns = computed(() => {
                 break;
               case "LND":
                 state = "Aterrizando";
-                color = "text-green-500";
+                color = "text-green-700";
                 break;
               case "SCH":
                 state = "Programado";
@@ -297,11 +315,15 @@ const columns = computed(() => {
               break;
             case "FLY":
               state = "En vuelo";
-              color = "text-gray-500";
+              color = "text-blue-500";
               break;
             case "IBK":
               state = "Entrega equipaje";
-              color = "text-gray-500";
+              color = "text-emerald-500";
+              break;
+            case "OPE":
+              state = "Aterrizado";
+              color = "text-green-500";
               break;
             case "FNL":
               state = "Finalizado";
@@ -319,7 +341,7 @@ const columns = computed(() => {
               break;
             case "LND":
               state = "Aterrizando";
-              color = "text-green-500";
+              color = "text-green-700";
               break;
             case "SCH":
               state = "Programado";
@@ -336,8 +358,6 @@ const columns = computed(() => {
               state = "Cancelado";
               color = "bg-red-200 text-red-900";
               break;
-            default:
-              state = data;
           }
           return `<span class="font-semibold ${color}">${state}</span>`;
         },

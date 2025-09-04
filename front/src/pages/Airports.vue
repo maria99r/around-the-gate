@@ -40,6 +40,7 @@ function selectAirport(iata) {
       </a>
     </li>
   </ul>
+  <br />
 
   <footer
     class="fixed bottom-0 left-0 w-full flex justify-around items-center bg-black py-3 border-t border-gray-800"
