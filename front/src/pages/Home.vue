@@ -1,6 +1,6 @@
 <script setup>
 import { onMounted } from "vue";
-import FlightsBoard from "./FlightsBoard.vue";
+import FlightsBoard from "../components/FlightsBoard.vue";
 
 import { useFlightsStore } from "../stores/flightsStore";
 
@@ -10,18 +10,11 @@ onMounted(async () => {
   await flightsStore.loadAirports();
 });
 
-function selectAirport(iata) {
-  flightsStore.loadFlights(iata, flightsStore.typeOfInfo);
-}
-
 let now = new Date();
 </script>
 
 <template>
   <!-- Logo inspired by rawpixel.com / Freepik -->
-  <!--<button @click="flightsStore.changeType()">
-    Ver {{ flightsStore.typeOfInfo === "S" ? "llegadas" : "salidas" }}
-  </button>-->
   <nav class="flex center flex-col items-center gap-3">
     <img
       v-if="flightsStore.typeOfInfo == 'S'"
@@ -39,6 +32,7 @@ let now = new Date();
       {{ flightsStore.actualAirport.name.replace(/-/g, " ") }}
     </h3>
   </nav>
+  <br />
   <header>
     <p>Hora local</p>
     <p>
@@ -49,28 +43,28 @@ let now = new Date();
       }}
     </p>
   </header>
-  <!--  <h1>LISTADO DE AEROPUERTOS</h1>
-  <ul class="list-none columns-2 gap-16">
-    <li
-      v-for="([iata, name], index) in Object.entries(flightsStore.airports)"
-      :key="iata"
-      class="mb-2 font-semibold capitalize"
-    >
-      <a
-        :href="`?airport=${iata}`"
-        class="hover:underline"
-        @click.prevent="selectAirport(iata)"
-      >
-        {{ name[0].replace(/-/g, " ") }} ({{ iata }})
-      </a>
-    </li>
-  </ul>
--->
+
   <FlightsBoard></FlightsBoard>
 
   <footer>
-    <button>Aeropuertos</button>
-    <button>Salidas</button><button>LLegadas</button>
+    <RouterLink
+      :to="{ name: 'airports' }"
+      class="text-center w-max mx-auto lg:mx-0 bg-blue-500 !text-white rounded-xl transition-all duration-200 hover:shadow-md hover:shadow-zinc-200 hover:translate-x-0.5 py-2 px-4"
+    >
+      Aeropuertos
+    </RouterLink>
+    <button
+      @click="flightsStore.changeType()"
+      class="text-center w-max mx-auto lg:mx-0 bg-blue-500 !text-white rounded-xl transition-all duration-200 hover:shadow-md hover:shadow-zinc-200 hover:translate-x-0.5 py-2 px-4"
+    >
+      Salidas
+    </button>
+    <button
+      @click="flightsStore.changeType()"
+      class="text-center w-max mx-auto lg:mx-0 bg-blue-500 !text-white rounded-xl transition-all duration-200 hover:shadow-md hover:shadow-zinc-200 hover:translate-x-0.5 py-2 px-4"
+    >
+      Llegadas
+    </button>
   </footer>
 </template>
 

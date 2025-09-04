@@ -7,7 +7,7 @@
   </div>
 
   <DataTable
-    v-else
+    v-else-if="!store.loading && flights.length > 0"
     :data="flights"
     :columns="columns"
     class="display stripe hover"
@@ -18,6 +18,8 @@
       ],
     }"
   />
+
+  <div v-else>No hay información de vuelos para los próximos 2 días.</div>
 </template>
 
 <script setup>
