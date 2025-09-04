@@ -21,4 +21,11 @@
 
 ---
 
+- **Fururas mejoras:** 
+  - Desplegarla :)
+  - Calcular aeropuerto más cercano según IP
+  - Notificaciones
+  - Más información sobre vuelos
+  - Mejorar rendimiento
+
 
