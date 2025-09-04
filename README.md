@@ -21,7 +21,7 @@
 
 ---
 
-- **Fururas mejoras:** 
+## Fururas mejoras
   - Desplegarla :)
   - Calcular aeropuerto más cercano según IP
   - Notificaciones
