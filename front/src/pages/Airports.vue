@@ -20,26 +20,12 @@ function selectAirport(iata) {
 
 <template>
   <nav class="flex center flex-col items-center gap-3">
-    <img
-      v-if="flightsStore.typeOfInfo == 'S'"
-      src="/salidas.webp"
-      class="w-50"
-    />
-    <img
-      v-if="flightsStore.typeOfInfo == 'L'"
-      src="/llegadas.webp"
-      class="w-50"
-    />
-
-    <h3 class="capitalize">
-      <strong>{{ flightsStore.actualAirport.code }}</strong> -
-      {{ flightsStore.actualAirport.name.replace(/-/g, " ") }}
-    </h3>
+    <img src="/aeropuertos.webp" class="h-15" />
   </nav>
   <br />
 
   <!--  <h1>LISTADO DE AEROPUERTOS</h1>-->
-  <ul class="list-none columns-2 gap-16">
+  <ul class="list-none columns-2 gap-16 mb-20">
     <li
       v-for="([iata, name], index) in Object.entries(flightsStore.airports)"
       :key="iata"
@@ -61,7 +47,7 @@ function selectAirport(iata) {
     <RouterLink
       :to="{ name: 'airports' }"
       class="flex-1 text-center text-gray-400 hover:text-white transition-colors"
-      active-class="text-[color:var(--primary-color)]"
+      active-class="text-[var(--secondary-color)]!"
     >
       Aeropuertos
     </RouterLink>
@@ -70,9 +56,6 @@ function selectAirport(iata) {
       @click="flightsStore.changeType('S') && router.push({ name: 'home' })"
       :class="[
         'flex-1 text-center text-gray-400 hover:text-white transition-colors',
-        flightsStore.typeOfInfo === 'S'
-          ? 'text-[color:var(--primary-color)]'
-          : '',
       ]"
     >
       Salidas
@@ -82,9 +65,6 @@ function selectAirport(iata) {
       @click="flightsStore.changeType('L') && router.push({ name: 'home' })"
       :class="[
         'flex-1 text-center text-gray-400 hover:text-white transition-colors',
-        flightsStore.typeOfInfo === 'L'
-          ? 'text-[color:var(--primary-color)]'
-          : '',
       ]"
     >
       Llegadas
@@ -98,8 +78,6 @@ function selectAirport(iata) {
 }
 
 nav {
-  position: absolute;
-  top: 0;
   justify-self: center;
 }
 </style>

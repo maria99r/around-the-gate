@@ -33,9 +33,10 @@ export const useFlightsStore = defineStore("flights", () => {
     loading.value = false;
   }
 
-  async function changeType() {
-    // alternar entre "S" (salidas) y "L" (llegadas)
-    typeOfInfo.value = typeOfInfo.value === "S" ? "L" : "S";
+  async function changeType(type) {
+    if (type == "S") {
+      type = "S";
+    } else type = "L";
 
     await loadFlights(actualAirport.value.code, typeOfInfo.value);
   }

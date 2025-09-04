@@ -15,16 +15,16 @@ let now = new Date();
 
 <template>
   <!-- Logo inspired by rawpixel.com / Freepik -->
-  <nav class="flex center flex-col items-center gap-3">
+  <nav class="flex flex-col items-center gap-3">
     <img
       v-if="flightsStore.typeOfInfo == 'S'"
       src="/salidas.webp"
-      class="w-50"
+      class="h-15"
     />
     <img
       v-if="flightsStore.typeOfInfo == 'L'"
       src="/llegadas.webp"
-      class="w-50"
+      class="h-15"
     />
 
     <h3 class="capitalize">
@@ -34,7 +34,7 @@ let now = new Date();
   </nav>
   <br />
   <header>
-    <p>Hora local</p>
+    <p><b>Hora local</b></p>
     <p>
       {{
         ("0" + now.getHours()).slice(-2) +
@@ -46,22 +46,33 @@ let now = new Date();
 
   <FlightsBoard></FlightsBoard>
 
-  <footer>
+  <footer
+    class="fixed bottom-0 left-0 w-full flex justify-around items-center bg-black py-3 border-t border-gray-800"
+  >
     <RouterLink
       :to="{ name: 'airports' }"
-      class="text-center w-max mx-auto lg:mx-0 bg-blue-500 !text-white rounded-xl transition-all duration-200 hover:shadow-md hover:shadow-zinc-200 hover:translate-x-0.5 py-2 px-4"
+      class="flex-1 text-center text-gray-400 hover:text-white transition-colors"
+      active-class="text-[var(--secondary-color)]!"
     >
       Aeropuertos
     </RouterLink>
+
     <button
-      @click="flightsStore.changeType()"
-      class="text-center w-max mx-auto lg:mx-0 bg-blue-500 !text-white rounded-xl transition-all duration-200 hover:shadow-md hover:shadow-zinc-200 hover:translate-x-0.5 py-2 px-4"
+      @click="flightsStore.changeType('S') && router.push({ name: 'home' })"
+      :class="[
+        'flex-1 text-center text-gray-400 hover:text-white transition-colors',
+        flightsStore.typeOfInfo === 'S' ? 'text-[var(--secondary-color)]!' : '',
+      ]"
     >
       Salidas
     </button>
+
     <button
-      @click="flightsStore.changeType()"
-      class="text-center w-max mx-auto lg:mx-0 bg-blue-500 !text-white rounded-xl transition-all duration-200 hover:shadow-md hover:shadow-zinc-200 hover:translate-x-0.5 py-2 px-4"
+      @click="flightsStore.changeType('L') && router.push({ name: 'home' })"
+      :class="[
+        'flex-1 text-center text-gray-400 hover:text-white transition-colors',
+        flightsStore.typeOfInfo === 'L' ? 'text-[var(--secondary-color)]!' : '',
+      ]"
     >
       Llegadas
     </button>
@@ -71,11 +82,5 @@ let now = new Date();
 <style>
 .dt-length {
   display: none !important;
-}
-
-nav {
-  position: absolute;
-  top: 0;
-  justify-self: center;
 }
 </style>

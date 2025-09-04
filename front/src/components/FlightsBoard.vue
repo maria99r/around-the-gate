@@ -112,8 +112,7 @@ const columns = [
           state = "En hora";
           break;
         case "INI":
-          color = "text-green-500";
-          state = "Embarcando";
+          state = "En hora";
           break;
         case "EMB":
           color = "text-green-500";
@@ -152,3 +151,9 @@ onMounted(() => {
   store.loadFlights();
 });
 </script>
+
+<style>
+.datatable {
+  margin-bottom: 4rem !important;
+}
+</style>
